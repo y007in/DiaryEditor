@@ -30,7 +30,7 @@ const reducer = (state, action) => {
     }
     case "EDIT": {
       newState = state.map((it) =>
-        it.id === action.date.id ? { ...action.data } : it
+        it.id === action.data.id ? { ...action.data } : it
       );
       break;
     }
@@ -89,10 +89,12 @@ function App() {
   const onEdit = (targetId, date, content, emotion) => {
     dispatch({
       type: "EDIT",
-      id: targetId,
-      date: new Date(date).getTime(),
-      content,
-      emotion,
+      data: {
+        id: targetId,
+        date: new Date(date).getTime(),
+        content,
+        emotion,
+      },
     });
   };
   return (
